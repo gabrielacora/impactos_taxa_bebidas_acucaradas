@@ -1,3 +1,18 @@
+##############################################
+#########         PACOTES              #######
+##############################################
+
+# install.packages('plotly')
+# install.packages ('dplyr')
+# install.packages('data.table')
+# install.packages('readr')
+
+require(readr)       # Utilizado para leitura de csvs
+require(data.table)  # Utilizado para manipulação de dados
+require(dplyr)       # Utilizado para manipulação de dados
+require(plotly)      # Utilizado para gerar gráficos
+
+
 ##################
 #### GRÁFICOS ####
 ##################

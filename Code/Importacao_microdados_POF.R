@@ -27,7 +27,7 @@ library(digest)
 library(plotly)
 
 
-# config globais
+# configurações globais
 
 setwd( "~/Dados/" ) # aponta o caminho do diretório em que serão salvos os microdados da POF
 
@@ -315,81 +315,4 @@ gc()
 	
 }
 
-
-##################################
-##### ANÁLISE DOS MICRODADOS #####
-##################################
-
-# Importando dados
-
-load("C:/Users/User/Documents/Taxa_Bedidas_açucaradas/Dados/2009/t_morador_s.rda")
-
-# transformando dados 
-
-dados_antropometricos = as.data.frame(t_morador_s)
-dados_antropometricos_1 = filter(dados_antropometricos, idade_anos > 18)
-
-dados_antropometricos_2 = data.frame (dados_antropometricos_1$peso_imputado, dados_antropometricos_1$altura_imputado, dados_antropometricos_1$cod_sexo)
-
-dados_antropometricos_2 %>% filter (dados_antropometricos_2, dados_antropometricos_1.peso_imputado != 0.00)
-
-imc =round(dados_antropometricos_2$dados_antropometricos_1.peso_imputado/((dados_antropometricos_2$dados_antropometricos_1.altura_imputado/100)^2)) 
-
-imc = as.data.frame (imc)
-
-imc_selecionados = filter(imc, imc > 16 & imc < 62)
-
-summary(imc_selecionados)
-
-table_imc = as.data.frame(table(imc_selecionados))
-
-table_imc$perc = (prop.table(table_imc$Freq))*100
-
-
-distribuicao_imc = data.frame(table_imc$imc_selecionados, table_imc$perc)
-
-distribuicao_imc$table_imc.imc_selecionados =  as.numeric(as.character(distribuicao_imc$table_imc.imc_selecionados))
-
-plot_distribuicao_imc = plot_ly(x= distribuicao_imc$table_imc.imc_selecionados, y = distribuicao_imc$table_imc.perc, type = 'bar')
-
-total_obesos = filter(distribuicao_imc, table_imc.imc_selecionados >= 30)
-
-total_obesidade = sum(total_obesos$table_imc.perc)
-
-
-######################################################
-#### CALCULANDO ALTERAÇÕES NO IMC PÓS INTERVENÇÃO ####
-######################################################
-
-
-dados_antro = dados_antropometricos
-dados_antro$dados_antropometricos.peso_imputado = dados_antro$dados_antropometricos.peso_imputado - perda_peso
-
-imc2 =round(dados_antro$dados_antropometricos.peso_imputado/((dados_antro$dados_antropometricos.altura_imputado/100)^2))
-
-
-imc2 = as.data.frame(imc2)
-
-require(plotly)
-
-imc_selecionados2 = filter(imc2, imc2$imc2 > 16 & imc2$imc2 < 62)
-
-summary(imc_selecionados)
-
-pop_table_imc2= prop.table(imc_selecionados$imc2)
-
-table_imc2 = as.data.frame(table(imc_selecionados2))
-
-table_imc2$perc = (prop.table(table_imc2$Freq))*100
-
-
-y = data.frame(table_imc2$imc_selecionados2, table_imc2$perc)
-
-y$table_imc2.imc_selecionados2 = as.numeric(as.character(y$table_imc2.imc_selecionados2))
-
-yy = plot_ly(x= x$table_imc.imc_selecionados, y = x$table_imc.perc, type = 'bar')
-
-total_obeso = filter(y, table_imc2.imc_selecionados2 >= 30)
-
-total_obesidade = sum(total_obeso$table_imc2.perc)
 

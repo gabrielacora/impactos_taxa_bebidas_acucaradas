@@ -1,7 +1,18 @@
+##############################################
+#########         PACOTES              #######
+##############################################
 
+# install.packages('plotly')
+# install.packages ('dplyr')
+# install.packages('data.table')
+# install.packages('readr')
 # install.packages('rworldmap')
 
-require(rworldmap)
+require(readr)       # Utilizado para leitura de csvs
+require(data.table)  # Utilizado para manipulação de dados
+require(dplyr)       # Utilizado para manipulação de dados
+require(plotly)      # Utilizado para gerar gráficos
+require(rworldmap)   # Utilizado para gerar gráficos
 
 
 population_records = readLines("~/API_SP.POP.TOTL_DS2_en_csv_v2.csv")[-(1:4)]

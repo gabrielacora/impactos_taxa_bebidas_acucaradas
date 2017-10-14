@@ -60,29 +60,26 @@ require(xts)         # Utilizado para a geração de séries temporais
 #### Gráfico consumo bebidas açucaradas no Brasil ####
 ######################################################
 
-consumo_br <- read_delim("C:/Users/User/consumo_soft-drinks.csv", 
-                                      ";", escape_double = FALSE, col_types = cols(Category = col_date(format = "%Y")))
+consumo_br = fread(input = 'C:/Users/User/Google Drive/UFRGS 2017/TCC/dados euromonitor/consumo_br.csv', header = TRUE)
 
-consumo_br = data.frame(consumo_br$Category, consumo_br$`Soft Drinks`, consumo_br$`   Carbonates`, consumo_br$`   Concentrates`, consumo_br$`   RTD Tea`, consumo_br$`   Sports and Energy Drinks`)
-
-colnames(consumo_br) = c('ano', 'bebidas açucaradas', 'refigerantes', 'sucos concentrados', 'chás açucarados', 'Bebidas esportivas e energeticos')
-
-serie_consumo <- xts(consumo_br[,-1], order.by=as.Date(consumo_br[,1], "%Y"))
-
-total = serie_consumo[,1]
-refigerentes = serie_consumo[,2]
-sucos_concentrados = serie_consumo[,3]
-chas = serie_consumo[,4]
-bebidas_esportivas = serie_consumo[,5]
-
-plot_ly(x= consumo_br$ano, y = consumo_br$`sucos concentrados`, type = 'bar', name = 'sucos concentrados') %>%
-  add_trace(y = consumo_br$refigerantes, name = 'refrigerantes', colors = "BuPu") %>%
-  add_trace(y = consumo_br$`Bebidas esportivas e energeticos`, name = 'bebidas esportivas e energéticas') %>%
-  add_trace(y = consumo_br$`chás açucarados`, name = 'chas') %>%
-  layout(yaxis = list(title = 'Litros consumidos per capita'), barmode = 'stack') %>%
-  layout(legend = list(orientation = 'h'))
-
-###########################################
+plot_ly (x= consumo_br$V1, y= consumo_br$Refrigerantes, type = 'bar', name = 'Refrigerantes',  marker = list(color = 'rgb(158,202,225)',
+                                                                                                             line = list(color = 'rgb(8,48,107)',
+                                                                                                                         width = 1.5))) %>%
+  add_trace(y = consumo_br$Concentradas, name = 'Concentrados', marker = list(color = 'rgb(32,210,187)',
+                                                                               line = list(color = 'rgb(7,131,114)',
+                                                                                           width = 1.5))) %>%
+  add_trace(y = consumo_br$Sucos, name = 'Sucos', marker = list(color = 'rgb(242,203,242)',
+                                                                line = list(color = 'rgb(185,7,185)',
+                                                                            width = 1.5))) %>%
+  add_trace(y= consumo_br$Chás, name = "Chás", marker = list(color = 'rgb(181,225,151)',
+                                                             line = list(color = 'rgb(102,153,102)',
+                                                                         width = 1.5))) %>%
+  add_trace(y= consumo_br$`Esportivas e Energéticas`, name = 'Energéticos e Esportivas', marker = list(color = 'rgb(255,152,152)',
+                                                                                                       line = list(color = 'rgb(239,36,36)',
+                                                                                                                   width = 1.5))) %>%
+  layout(yaxis = list(title = 'Consumo em litros per capita'), barmode = 'stack',  legend = list(orientation = "h",   # show entries horizontally
+                                                                                       x = 5)     )
+ ###########################################
 #####   Grafico consumo mundial ssb #######
 ###########################################
 

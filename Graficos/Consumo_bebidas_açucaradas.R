@@ -60,25 +60,25 @@ require(xts)         # Utilizado para a geração de séries temporais
 #### Gráfico consumo bebidas açucaradas no Brasil ####
 ######################################################
 
-consumo_br = fread(input = 'C:/Users/User/Google Drive/UFRGS 2017/TCC/dados euromonitor/consumo_br.csv', header = TRUE)
+consumo_br = fread(input = 'C:/Users/User/consumo_br.csv', header = TRUE)
 
-plot_ly (x= consumo_br$V1, y= consumo_br$Refrigerantes, type = 'bar', name = 'Refrigerantes',  marker = list(color = 'rgb(158,202,225)',
-                                                                                                             line = list(color = 'rgb(8,48,107)',
+plot_ly(x= consumo_br$V1, y= consumo_br$Refrigerantes, type = 'bar', name = 'Refrigerantes',  marker = list(color = '#E0CCFF',
+                                                                                                                           line = list(color = '#C77DFF',
                                                                                                                          width = 1.5))) %>%
-  add_trace(y = consumo_br$Concentradas, name = 'Concentrados', marker = list(color = 'rgb(32,210,187)',
-                                                                               line = list(color = 'rgb(7,131,114)',
+  add_trace(y = consumo_br$Concentradas, name = 'Concentrados', marker = list(color = '#CC66FF',
+                                                                              line = list(color = 'rgb(174,75,202)',
                                                                                            width = 1.5))) %>%
-  add_trace(y = consumo_br$Sucos, name = 'Sucos', marker = list(color = 'rgb(242,203,242)',
-                                                                line = list(color = 'rgb(185,7,185)',
+  add_trace(y = consumo_br$Sucos, name = 'Sucos', marker = list(color = '#9999FF',
+                                                               line = list(color = '#A366FF',
                                                                             width = 1.5))) %>%
-  add_trace(y= consumo_br$Chás, name = "Chás", marker = list(color = 'rgb(181,225,151)',
-                                                             line = list(color = 'rgb(102,153,102)',
+  add_trace(y= consumo_br$Chás, name = "Chás", marker = list(color = '#A8BDFF',
+                                                             line = list(color = ' #7A99FF',
                                                                          width = 1.5))) %>%
-  add_trace(y= consumo_br$`Esportivas e Energéticas`, name = 'Energéticos e Esportivas', marker = list(color = 'rgb(255,152,152)',
-                                                                                                       line = list(color = 'rgb(239,36,36)',
+  add_trace(y= consumo_br$`Esportivas e Energéticas`, name = 'Energéticos e Esportivas', marker = list(color = '#335EF0',
+                                                                                                       line = list(color = '#333399',
                                                                                                                    width = 1.5))) %>%
-  layout(yaxis = list(title = 'Consumo em litros per capita'), barmode = 'stack',  legend = list(orientation = "h",   # show entries horizontally
-                                                                                       x = 5)     )
+  layout(yaxis = list(title = 'Consumo em litros per capita'), barmode = 'stack',  legend = list(orientation = "h", x = 5))
+  
  ###########################################
 #####   Grafico consumo mundial ssb #######
 ###########################################
@@ -86,12 +86,29 @@ plot_ly (x= consumo_br$V1, y= consumo_br$Refrigerantes, type = 'bar', name = 'Re
 consumo_ssb = fread(input = "C:/Users/User/consumo_ssb.csv", header = TRUE)
 colnames(consumo_ssb) = c('Ano', 'Ásia Pacífico', 'Australásia', 'América Latina', 'Europa Oriental', 'Oriente Médio e África' ,'Europa Ocidental', 'América do Norte')
 
-plot_ly(x = consumo_ssb$Ano,y=  consumo_ssb$Australásia, type  = 'scatter', size = consumo_ssb$Australásia, name = 'Australásia') %>%
-  add_trace(y = consumo_ssb$`América Latina`, name = 'América Latina', size = consumo_ssb$`América Latina`) %>%
-  add_trace(y = consumo_ssb$`Europa Oriental``, name = 'Europa Oriental', size = consumo_ssb$`Europa Oriental`) %>%
-  add_trace(y = consumo_ssb$`Oriente Médio e África`, name = 'Oriente Médio e África', size = consumo_ssb$`Oriente Médio e África`) %>%
-  add_trace(y = consumo_ssb$`Europa Ocidental`, name = 'Europa Ociental', size = consumo_ssb$`Europa Ocidental`) %>%
-  add_trace(y= consumo_ssb$`Amárica do Norte`, name = 'América do Norte', size = consumo_ssb$`América do Norte`) %>%
-  add_trace(y = consumo_ssb$`Ásia Pacpífico`, name = 'Ásia Pacífico', size = consumo_ssb$`Ásia Pacífico` )
+plot_ly(x = consumo_ssb$Ano,y=  consumo_ssb$Australásia, size = consumo_ssb$Australásia, name = 'Australásia', type = "bar", marker = list(color = ' #FFCCFF',
+                                                                                                                                           line = list(color = '#FF33CC',
+                                                                                                                                                       width = 1.5))) %>%
+
+  add_trace(y = consumo_ssb$`América Latina`, name = 'América Latina', size = consumo_ssb$`América Latina`, marker = list(color = '#E0CCFF',
+                                                                                                                          line = list(color = '#C77DFF',
+                                                                                                                                      width = 1.5))) %>%
+  
+  add_trace(y = consumo_ssb$`Oriente Médio e África`, name = 'Oriente Médio e África', size = consumo_ssb$`Oriente Médio e África`,marker = list(color = '#CC66FF',
+                                                                                                                                                 line = list(color = 'rgb(174,75,202)',
+                                                                                                                                                             width = 1.5))) %>%
+  add_trace(y = consumo_ssb$`Europa Oriental`, name = 'Europa Oriental', size = consumo_ssb$`Europa Oriental`, marker = list(color = '#9999FF',
+                                                                                                                             line = list(color = '#A366FF',
+                                                                                                                                         width = 1.5))) %>%
+  add_trace(y = consumo_ssb$`Europa Ocidental`, name = 'Europa Ociental', size = consumo_ssb$`Europa Ocidental`, marker = list(color = '#A8BDFF',
+                                                                                                                               line = list(color = ' #7A99FF',
+                                                                                                                                           width = 1.5))) %>%
+  add_trace(y= consumo_ssb$`América do Norte`, name = 'América do Norte', size = consumo_ssb$`América do Norte`, marker = list(color = '#7AADFF',
+                                                                                                                               line = list(color = '#3380FF',
+                                                                                                                                           width = 1.5))) %>%
+  add_trace(y = consumo_ssb$`Ásia Pacífico`, name = 'Ásia Pacífico', size = consumo_ssb$`Ásia Pacífico` , marker = list(color = '#335EF0',
+                                                                                                                        line = list(color = '#333399',
+                                                                                                                                    width = 1.5))) %>%
+  layout(yaxis = list(title = 'Consumo em litros per capita'), barmode = 'stack',  legend = list(orientation = "h", x = 5)     )
 
 

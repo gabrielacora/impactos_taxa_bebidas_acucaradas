@@ -15,6 +15,8 @@ require(plotly)      # Utilizado para gerar gráficos
 require(rworldmap)   # Utilizado para gerar gráficos
 
 
+# leitura e intepretação dos dados 
+
 population_records = readLines("~/API_SP.POP.TOTL_DS2_en_csv_v2.csv")[-(1:4)]
 population_data = read.csv(text=population_records, header = TRUE)
 
@@ -31,6 +33,10 @@ mapped_data <- joinCountryData2Map(obes_data, joinCode = "ISO3",
 
 colourPalette <- RColorBrewer::brewer.pal(9, 'YlOrRd')
 
+
+# mapa obesidade masculina 
+
+
 par(mai=c(0,0,0.5,0),xaxs="i",yaxs="i")
 mapParams= mapCountryData(mapped_data, nameColumnToPlot = "Male", colourPalette= colourPalette, mapTitle= '' , addLegend = FALSE  ,oceanCol='lightblue' , missingCountryCol='white'
  )
@@ -39,13 +45,13 @@ mapParams= mapCountryData(mapped_data, nameColumnToPlot = "Male", colourPalette=
 do.call( addMapLegend
           , c( mapParams
                  , legendLabels="all"
-                 , legendWidth=0.5
+                 , labelFontSize = 2.5
                  , legendIntervals="data"
                  , legendMar = 2 ) )
 
 
 
-# feminina
+#  mapa obesidade feminina
 
 
 par(mai=c(0,0,0.5,0),xaxs="i",yaxs="i")
@@ -56,6 +62,6 @@ mapParams_fem= mapCountryData(mapped_data, nameColumnToPlot = "Female", colourPa
 do.call( addMapLegend
          , c( mapParams_fem
               , legendLabels="all"
-              , legendWidth=0.5
+            
               , legendIntervals="data"
-              , legendMar = 2 ) )
+              , labelFontSize = 2.5

@@ -18,7 +18,7 @@ require(plotly)      # Utilizado para gerar gráficos
 ##################
 
 
-### IMC PRÉ TAXAÇÃO
+### IMC PRÉ TRIBUTAÇÃO
 
 imc_selecionados = filter(table_imc, imc > 16 & imc < 40) # retirando disparidades para gr?fico
 
@@ -31,7 +31,7 @@ colnames(imc_arredondado) = c("IMC", "Freq", "Percentual")
 imc_arredondado$IMC = as.numeric(as.character(imc_arredondado$IMC))
 
 
-### IMC PÓS TAXAÇÃO
+### IMC PÓS TRIBUTAÇÃO
 
 imc_selecionados_2 = filter(table_imc_pos_intervencao, imc_pos_intervencao > 16 & imc_pos_intervencao < 40) # retirando disparidades para gr?fico
 
@@ -67,6 +67,6 @@ b <- list(
   ay = -380
 )
 
-plot_distribuicao_imc = plot_ly(x= imc_arredondado$IMC, y = imc_arredondado$Percentual, type = 'bar', name = "IMC antes da Taxa??o" , marker = list(color = '#FFC0D5',line = list(color = '#FF90B5', width = 1.5))) %>%
-  add_trace(x= imc_arredondado_2$IMC, y = imc_arredondado_2$Percentual, type = 'bar', name = "IMC p?s Taxa??o", marker = list(color = '#DFE9FF', line = list(color = '#B2C8FC', width = 1.0))) %>%
-  layout(yaxis = list(title = 'Percentual da popula??o adulta (%)', text = paste(imc_arredondado_2$Percentual, '%')), legend = list(orientation = 'h', x = 100, y = 8), xaxis = list(title = "IMC",  nticks = 6), annotations = list(a,b))
+plot_distribuicao_imc = plot_ly(x= imc_arredondado$IMC, y = imc_arredondado$Percentual, type = 'bar', name = "IMC antes da Tributação" , marker = list(color = '#FFC0D5',line = list(color = '#FF90B5', width = 1.5))) %>%
+  add_trace(x= imc_arredondado_2$IMC, y = imc_arredondado_2$Percentual, type = 'bar', name = "IMC pós tributação", marker = list(color = '#DFE9FF', line = list(color = '#B2C8FC', width = 1.0))) %>%
+  layout(yaxis = list(title = 'Percentual da população adulta (%)', text = paste(imc_arredondado_2$Percentual, '%')), legend = list(orientation = 'h', x = 100, y = 8), xaxis = list(title = "IMC",  nticks = 6), annotations = list(a,b))

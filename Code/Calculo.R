@@ -53,7 +53,7 @@ consumo$consumo_cal_diario = (consumo$Cosumo*consumo$Calorias)/365
 sum(consumo$consumo_cal_diario)  #total de calorias ingeridas ao dia
 
 #############################################################
-### Cálculo da variação do consumo pós introdução de taxa ###
+### Cálculo da variação do consumo pós introdução do tributo ###
 
 
 #### elasticidades 
@@ -71,13 +71,13 @@ consumo$elasticidade = elasticidade # unindo à base de dados pré-existente
 
 consumo$variacao = (0.20 * elasticidade)
 
-consumo$novo_consumo = consumo$Cosumo * (consumo$variacao + 1 ) # consumo pós taxação
+consumo$novo_consumo = consumo$Cosumo * (consumo$variacao + 1 ) # consumo pós tributação
 
-consumo$novo_consumo_calorico = consumo$novo_consumo * consumo$Calorias #consumo calórico pós taxação
+consumo$novo_consumo_calorico = consumo$novo_consumo * consumo$Calorias #consumo calórico pós tributação
 
-consumo$novo_consumo_cal_diario = (consumo$novo_consumo*consumo$Calorias)/365 #consumo calórico diário pós taxação
+consumo$novo_consumo_cal_diario = (consumo$novo_consumo*consumo$Calorias)/365 #consumo calórico diário pós tribução
 
-sum(consumo$novo_consumo_cal_diario) #consumo calórico diário pós taxação
+sum(consumo$novo_consumo_cal_diario) #consumo calórico diário pós tributação
 
 ### Estimando a variação de peso a partir da variação calórica
 
